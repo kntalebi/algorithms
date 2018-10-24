@@ -3,12 +3,10 @@ struct Pair
 {
 	int first, second;
 
-	Pair(): first(0),
-			second(0)
+	Pair(): first(0), second(0)
 	{}
 
-	Pair(int first, int second) :	first(first),
-									second(second)
+	Pair(int first, int second) :	first(first), second(second)
 	{}
 };
 
