@@ -1,26 +1,31 @@
 #include "Sort.h"
 #include <iostream>
+#include "Result.h"
 
-void Merge(std::vector<Pair>& data, int first, int middle, int last);
+void Merge(std::vector<Pair>& data, Result& result, int first, int middle, int last);
 
-void MergeSort(std::vector<Pair> data)
+Result MergeSort(std::vector<Pair> data)
 {
-	MergeSort(data, 0, data.size() - 1);
+    Result result;
+    result.startTimer();
+    MergeSort(data, result, 0, data.size() - 1);
+    result.endTimer();
+    result.setData(data);
+    return result;
 }
 
-
-void MergeSort(std::vector<Pair>& data, int first, int last)
+void MergeSort(std::vector<Pair>& data, Result& result, int first, int last)
 {
 	int middle = (first + last) / 2;
 
 	if (first < last) {
-		MergeSort(data, first, middle);
-		MergeSort(data, middle + 1, last);
-		Merge(data, first, middle, last);
+		MergeSort(data, result, first, middle);
+		MergeSort(data, result, middle + 1, last);
+		Merge(data, result, first, middle, last);
 	}
 }
 
-void Merge(std::vector<Pair>& data, int first, int middle, int last)
+void Merge(std::vector<Pair>& data, Result& result, int first, int middle, int last)
 {
 	std::vector<Pair> merged(last - first + 1);
 	int i = first, j = middle + 1, k = 0;
@@ -56,23 +61,28 @@ void Merge(std::vector<Pair>& data, int first, int middle, int last)
 }
 
 
-int Partition(std::vector<Pair>& data, int first, int last);
+int Partition(std::vector<Pair>& data, Result& result, int first, int last);
 
-void Quicksort(std::vector<Pair> data)
+Result Quicksort(std::vector<Pair> data)
 {
-	Quicksort(data, 0, data.size() - 1);
+    Result result;
+    result.startTimer();
+    Quicksort(data, result, 0, data.size() - 1);
+    result.endTimer();
+    result.setData(data);
+    return result;
 }
 
-void Quicksort(std::vector<Pair>& data, int first, int last)
+void Quicksort(std::vector<Pair>& data, Result& result, int first, int last)
 {
 	if (first < last) {
-		int middle = Partition(data, first, last);
-		Quicksort(data, first, middle - 1);
-		Quicksort(data, middle + 1, last);
+		int middle = Partition(data, result, first, last);
+		Quicksort(data, result, first, middle - 1);
+		Quicksort(data, result, middle + 1, last);
 	}
 }
 
-int Partition(std::vector<Pair>& data, int first, int last)
+int Partition(std::vector<Pair>& data, Result& result, int first, int last)
 {
 	Pair pivot = data[first];	
 	int h = first;
@@ -89,9 +99,12 @@ int Partition(std::vector<Pair>& data, int first, int last)
 	return h;
 }
 
-void BubbleSort(std::vector<Pair> data)
+Result BubbleSort(std::vector<Pair> data)
 {
-	int n = data.size() - 1;
+    Result result;
+    result.startTimer();
+
+    int n = data.size() - 1;
 	int i;
 	bool flag = true;
 	int iteration = 0;
@@ -108,38 +121,46 @@ void BubbleSort(std::vector<Pair> data)
 		}
 		iteration++;
 	}
+
+    result.endTimer();
+    result.setData(data);
+    return result;
 }
 
-void Heapify(std::vector<Pair>& data, int i, int heapSize);
-void BuildHeap(std::vector<Pair>& data, int heapSize);
-int Left(int i);
-int Right(int i);
+void Heapify(std::vector<Pair>& data, Result& result, int i, int heapSize);
+void BuildHeap(std::vector<Pair>& data, Result& result, int heapSize);
 
-void HeapSort(std::vector<Pair> data)
+Result HeapSort(std::vector<Pair> data)
 {
-	int heapSize = data.size();
-	BuildHeap(data, heapSize);
+    Result result;
+    result.startTimer();
+    int heapSize = data.size();
+	BuildHeap(data, result, heapSize);
 	for (int i = heapSize - 1; i >= 1; --i)
 	{
 		std::swap(data[0], data[i]);
 		heapSize--;
-		Heapify(data, 0, heapSize);
+		Heapify(data, result, 0, heapSize);
 	}
+
+    result.endTimer();
+    result.setData(data);
+    return result;
 }
 
-void BuildHeap(std::vector<Pair>& data, int heapSize)
+void BuildHeap(std::vector<Pair>& data, Result& result, int heapSize)
 {
 	for(int i = heapSize/2; i >= 0; --i)
 	{
-		Heapify(data, i, heapSize);
+		Heapify(data, result, i, heapSize);
 	}
 }
 
-void Heapify(std::vector<Pair>& data, int i, int heapSize)
+void Heapify(std::vector<Pair>& data, Result& result, int i, int heapSize)
 {
 	int smallest;
-	int l = Left(i);
-	int r = Right(i);
+	int l = 2 * i + 1;
+	int r = 2 * i + 2;
 
 	if(l < heapSize && data[l] < data[i])
 		smallest = l;
@@ -152,22 +173,15 @@ void Heapify(std::vector<Pair>& data, int i, int heapSize)
 	if(smallest != i)
 	{
 		std::swap(data[i], data[smallest]);
-		Heapify(data, smallest, heapSize);
+		Heapify(data, result, smallest, heapSize);
 	}
 }
 
-int Left(int i)
+Result SelectionSort(std::vector<Pair> data)
 {
-	return 2 * i + 1;
-}
+    Result result;
+    result.startTimer();
 
-int Right(int i)
-{
-	return 2 * i + 2;
-}
-
-void SelectionSort(std::vector<Pair> data)
-{
 	int n = data.size();
 	for (int i = 0; i < n - 1; ++i)
 	{
@@ -186,11 +200,18 @@ void SelectionSort(std::vector<Pair> data)
 		}
 
 	}
+
+    result.endTimer();
+    result.setData(data);
+    return result;
 }
 
-void InsertionSort(std::vector<Pair> data)
+Result InsertionSort(std::vector<Pair> data)
 {
-	int n = data.size();
+    Result result;
+    result.startTimer();
+    
+    int n = data.size();
 	for (int i = 1; i < n; ++i)
 	{
 		Pair current = data[i];
@@ -202,6 +223,10 @@ void InsertionSort(std::vector<Pair> data)
 ;		}
 		data[j + 1] = current;
 	}
+ 
+    result.endTimer();
+    result.setData(data);
+    return result;
 }
 
 void printVector(std::vector<Pair> const& data) {

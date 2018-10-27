@@ -1,19 +1,20 @@
 #pragma once
 #include "Pair.h"
+#include "Result.h"
 #include <vector>
 
-void MergeSort(std::vector<Pair> data);
-void MergeSort(std::vector<Pair>& data, int first, int last);
+Result MergeSort(std::vector<Pair> data);
+void MergeSort(std::vector<Pair>& data, Result& result, int first, int last);
 
-void Quicksort(std::vector<Pair> data);
-void Quicksort(std::vector<Pair>& data, int first, int last);
+Result Quicksort(std::vector<Pair> data);
+void Quicksort(std::vector<Pair>& data, Result& result, int first, int last);
 
-void BubbleSort(std::vector<Pair> data);
+Result BubbleSort(std::vector<Pair> data);
 
-void HeapSort(std::vector<Pair> data);
+Result HeapSort(std::vector<Pair> data);
 
-void SelectionSort(std::vector<Pair> data);
+Result SelectionSort(std::vector<Pair> data);
 
-void InsertionSort(std::vector<Pair> data);
+Result InsertionSort(std::vector<Pair> data);
 
 void printVector(std::vector<Pair> const& data);

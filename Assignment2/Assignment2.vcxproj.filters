@@ -29,5 +29,8 @@
     <ClInclude Include="Sort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Result.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

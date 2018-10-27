@@ -14,7 +14,6 @@ void main() {
 	std::cout << "Num elements: " << inputCount << std::endl;
 
 	std::vector<Pair> data(inputCount);
-	//data.resize(inputCount);
 
 	for(int i = 0; i < inputCount; ++i)
 	{
@@ -24,18 +23,23 @@ void main() {
 		auto comma = line.find_first_of(',');
 		auto end = line.find_first_of(')');
 
-		int first = stoi(line.substr(start + 1, comma - start - 1));
-		int second = stoi(line.substr(comma + 1, end - comma - 1));
+		int first = std::stoi(line.substr(start + 1, comma - start - 1));
+		int second = std::stoi(line.substr(comma + 1, end - comma - 1));
 
 		data[i] = Pair(first, second);		
 	}
 
-	Quicksort(data);
-	BubbleSort(data);
-	MergeSort(data);
-	HeapSort(data);
-	SelectionSort(data);
-	InsertionSort(data);
+	Result qsResult = Quicksort(data);
+
+    Result bsResult = BubbleSort(data);
+
+    Result msResult = MergeSort(data);
+
+	Result hsResult = HeapSort(data);
+
+	Result ssResult = SelectionSort(data);
+
+	Result isResult = InsertionSort(data);
 }
 
 void IgnoreFirstLine()
