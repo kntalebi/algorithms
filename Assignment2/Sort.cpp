@@ -28,7 +28,10 @@ void MergeSort(std::vector<Pair>& data, Result& result, int first, int last)
 void Merge(std::vector<Pair>& data, Result& result, int first, int middle, int last)
 {
 	std::vector<Pair> merged(last - first + 1);
-	int i = first, j = middle + 1, k = 0;
+	int i = first,
+    j = middle + 1, 
+    k = 0;
+
 	while (i <= middle && j <= last)
 	{
 		if (data[i] <= data[j])
@@ -55,7 +58,7 @@ void Merge(std::vector<Pair>& data, Result& result, int first, int middle, int l
 		++k;
 		++j;
 	}
-	for (i = first; i < last; ++i) {
+	for (i = first; i <= last; ++i) {
 		data[i] = merged[i - first];
 	}
 }
@@ -104,7 +107,7 @@ Result BubbleSort(std::vector<Pair> data)
     Result result;
     result.startTimer();
 
-    int n = data.size() - 1;
+    int n = data.size();
 	int i;
 	bool flag = true;
 	int iteration = 0;
