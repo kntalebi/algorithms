@@ -1,0 +1,24 @@
+Quick Sort
+Time spent: 0 seconds
+Step count: 215
+
+Bubble Sort
+Time spent: 0 seconds
+Step count: 161
+
+Merge Sort
+Time spent: 0 seconds
+Step count: 684
+
+Heap Sort
+Time spent: 0 seconds
+Step count: 550
+
+Selection Sort
+Time spent: 0 seconds
+Step count: 325
+
+Insertion Sort
+Time spent: 0 seconds
+Step count: 143
+

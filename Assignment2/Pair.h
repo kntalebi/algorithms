@@ -12,12 +12,14 @@ struct Pair
 
 inline bool operator<(const Pair& lhs, const Pair& rhs)
 {
-	return lhs.first < rhs.first ? true : lhs.second < rhs.second;
+    return lhs.first == rhs.first ?
+        lhs.second < rhs.second : 
+        lhs.first < rhs.first;	
 }
 
 inline bool operator>(const Pair& lhs, const Pair& rhs)
 {
-	return !(lhs < rhs);
+    return rhs < lhs;
 }
 
 inline bool operator<=(const Pair& lhs, const Pair& rhs)

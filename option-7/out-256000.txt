@@ -1,0 +1,20 @@
+Bubble Sort
+Time spent: 20153.3 seconds
+Step count: 344256386223
+
+Merge Sort
+Time spent: 5.528 seconds
+Step count: 77834221
+
+Heap Sort
+Time spent: 4.712 seconds
+Step count: 99646113
+
+Selection Sort
+Time spent: 11773.9 seconds
+Step count: 163845181120
+
+Insertion Sort
+Time spent: 8650.83 seconds
+Step count: 131296950531
+
